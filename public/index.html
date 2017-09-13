@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="atm-angular">
+  <head>
+	<script src="js/lib/angular.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/service/cliente.serv.js"></script>
+	<script src="js/service/rest.serv.js"></script>
+	<script src="js/controllers/cliente.ctrl.js"></script>
+  </head>
+  <body ng-controller="ClienteCtrl">
+	<div>
+	  <label>Cliente:</label>
+			<select ng-model="clienteSel"
+					ng-options="cliente as cliente.nome for cliente in clientes"></select>	  
+	  <hr>
+	  <span  style="color:#6B8E23;font-weight: bold;" ng-show="successMessage">
+		{{successMessage}}
+	  </span>
+
+	<div ng-show="successMessage">
+		<ul data-ng-repeat="nota in notas">
+			<li>{{nota}}</li>			
+		</ul>
+	</div>
+	  
+  	  <span  style="color:#FF4500;font-weight: bold;" ng-show="errorMessage">{{errorMessage}}</span>
+
+	  <div ng-show="clienteSel">
+		<h1>Hello {{clienteSel.nome}}!</h1>
+		Saldo: {{clienteSel.saldo}}
+		
+		<div>
+			<button ng-click="realizarSaque()">Saque</button>
+			<button ng-click="realizarDeposito()">Depósito</button>
+			
+			<div>
+				<input type="text" ng-model="valor" />
+			</div>
+		</div>
+		
+	  </div>
+	</div>
+  </body>
+</html>
